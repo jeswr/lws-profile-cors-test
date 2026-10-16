@@ -123,9 +123,10 @@ Each reports `document.contentType` as the served type without parameters. Detai
 
 ### Not covered yet
 
-- Address-bar check in Vivaldi (won't attach to automation) and macOS Safari (being automated with safaridriver).
+- Address-bar check in Vivaldi, which won't attach to automation.
+- Address-bar check in macOS Safari: safaridriver is enabled, but session creation timed out. A one-click self-report page ([`mac/nav-self.js`](mac/nav-self.js)) is open in both browsers as a fallback.
 - Arc, which needs an account sign-in.
-- A run over the public internet between two real HTTPS origins, using tunnels. This is in progress.
+- A run over the public internet between two real HTTPS origins. The tunnel tool (`cloudflared`) has not been installed yet.
 - Android browsers.
 - The macOS runs used the profile URL `https://www.w3.org/ns/lws`. The Linux runs used `https://www.w3.org/ns/lws/v1`. Both contain `:` and `/`, so the rule applies identically.
 
@@ -134,6 +135,13 @@ Each reports `document.contentType` as the served type without parameters. Detai
 - [w3c/lws-protocol#276](https://github.com/w3c/lws-protocol/issues/276), "Re-evaluate application/lws+json Media Type", gathers WG feedback on whether to keep `application/lws+json` or rely on the profiled `application/ld+json` form.
 
 - [w3c/json-ld-syntax#436](https://github.com/w3c/json-ld-syntax/issues/436), "URI in Profile triggers CORS Unsafe Request Header Byte rule", raised for IIIF and Linked Art. This is the original discussion, and it covers the same behaviour. It already recognised that the problem is more subtle than a browser blocking the request. Over time that conclusion got simplified to "WHATWG does not support URL profiles", which these results show is not accurate. At its 10 June 2026 meeting the JSON-LD WG noted that the preflight solves it, and planned to cover it in best practices rather than change JSON-LD.
+  - At the [13 November 2024 meeting](https://www.w3.org/2024/11/13-json-ld-minutes.html#bb35), the WG made the same point as [Costs of relying on the preflight](#costs-of-relying-on-the-preflight): profile-based content negotiation doesn't come for free, because servers also have to support preflights, which are "difficult to configure and easily forgotten".
+  - The issue's author agreed the preflight solves the problem, and suggested implementation notes in future specs.
+  - In January 2025 Ruben Verborgh reported hitting this routinely in practice with RDF agents, which led to whatwg/fetch#878 (below).
+- Options raised in that discussion besides relying on the preflight:
+  - Short token names for profiles, for example `profile=lws`. These contain no CORS-unsafe bytes, so they need no preflight.
+  - An `Accept-Profile` request header ([draft-svensson-profiled-representations](https://datatracker.ietf.org/doc/html/draft-svensson-profiled-representations-01)). Being a non-safelisted header, it would still need a preflight.
+  - A dedicated media type whose relationship to the JSON-LD form is spelled out, as Verifiable Credentials 2.0 does ([media type precision](https://www.w3.org/TR/vc-data-model-2.0/#media-type-precision)). That is the approach `application/lws+json` takes today.
 - [WebKit bug 165178](https://bugs.webkit.org/show_bug.cgi?id=165178) (2016) introduced the `Accept` restriction in Safari: "we're not blocking such request headers, merely making them trigger a preflight". Fetch later standardised the current byte list.
 - [whatwg/fetch#878](https://github.com/whatwg/fetch/issues/878) proposed letting servers opt out of CORS. It does not propose blocking these requests.
 
