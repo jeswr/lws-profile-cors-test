@@ -1,0 +1,34 @@
+{
+  "browser": "Opera",
+  "version": "153.0.8010.55",
+  "base": "http://127.0.0.1:8003",
+  "results": [
+    {
+      "path": "/profile",
+      "url": "http://127.0.0.1:8003/profile",
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws/v1\"",
+      "documentContentType": "application/ld+json",
+      "bodyText": "{\"@context\":\"https://www.w3.org/ns/lws/v1\",\"@id\":\"http://127.0.0.1:8003/profile\",\"type\":\"Container\",\"servedAs\":\"applicat",
+      "outcome": "displayed"
+    },
+    {
+      "path": "/lws",
+      "url": "http://127.0.0.1:8003/lws",
+      "status": 200,
+      "responseContentType": "application/lws+json",
+      "documentContentType": "application/lws+json",
+      "bodyText": "{\"@context\":\"https://www.w3.org/ns/lws/v1\",\"@id\":\"http://127.0.0.1:8003/lws\",\"type\":\"Container\",\"servedAs\":\"application/",
+      "outcome": "displayed"
+    },
+    {
+      "path": "/ldjson",
+      "url": "http://127.0.0.1:8003/ldjson",
+      "status": 200,
+      "responseContentType": "application/ld+json",
+      "documentContentType": "application/ld+json",
+      "bodyText": "{\"@context\":\"https://www.w3.org/ns/lws/v1\",\"@id\":\"http://127.0.0.1:8003/ldjson\",\"type\":\"Container\",\"servedAs\":\"applicati",
+      "outcome": "displayed"
+    }
+  ]
+}

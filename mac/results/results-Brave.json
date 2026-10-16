@@ -1,0 +1,353 @@
+{
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+  "results": [
+    {
+      "mode": "none",
+      "name": "GET  Accept ld+json;profile=\"url\" (quoted)",
+      "id": "Brave-none-0",
+      "ok": false,
+      "error": "TypeError: Failed to fetch",
+      "preflight": {
+        "method": "GET",
+        "headers": "accept"
+      }
+    },
+    {
+      "mode": "none",
+      "name": "GET  Accept ld+json;profile=url (unquoted)",
+      "id": "Brave-none-1",
+      "ok": false,
+      "error": "TypeError: Failed to fetch",
+      "preflight": {
+        "method": "GET",
+        "headers": "accept"
+      }
+    },
+    {
+      "mode": "none",
+      "name": "GET  Accept application/lws+json",
+      "id": "Brave-none-2",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/lws+json",
+        "contentType": null
+      },
+      "preflight": null
+    },
+    {
+      "mode": "none",
+      "name": "GET  Accept application/ld+json",
+      "id": "Brave-none-3",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/ld+json",
+        "contentType": null
+      },
+      "preflight": null
+    },
+    {
+      "mode": "none",
+      "name": "GET  no custom headers (read profiled response CT)",
+      "id": "Brave-none-4",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": null
+      },
+      "preflight": null
+    },
+    {
+      "mode": "none",
+      "name": "POST Content-Type ld+json;profile=\"url\"",
+      "id": "Brave-none-5",
+      "ok": false,
+      "error": "TypeError: Failed to fetch",
+      "preflight": {
+        "method": "POST",
+        "headers": "content-type"
+      }
+    },
+    {
+      "mode": "none",
+      "name": "POST Content-Type application/lws+json",
+      "id": "Brave-none-6",
+      "ok": false,
+      "error": "TypeError: Failed to fetch",
+      "preflight": {
+        "method": "POST",
+        "headers": "content-type"
+      }
+    },
+    {
+      "mode": "none",
+      "name": "POST Content-Type text/plain (control)",
+      "id": "Brave-none-7",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": "text/plain"
+      },
+      "preflight": null
+    },
+    {
+      "mode": "explicit",
+      "name": "GET  Accept ld+json;profile=\"url\" (quoted)",
+      "id": "Brave-explicit-8",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+        "contentType": null
+      },
+      "preflight": {
+        "method": "GET",
+        "headers": "accept"
+      }
+    },
+    {
+      "mode": "explicit",
+      "name": "GET  Accept ld+json;profile=url (unquoted)",
+      "id": "Brave-explicit-9",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/ld+json;profile=https://www.w3.org/ns/lws",
+        "contentType": null
+      },
+      "preflight": {
+        "method": "GET",
+        "headers": "accept"
+      }
+    },
+    {
+      "mode": "explicit",
+      "name": "GET  Accept application/lws+json",
+      "id": "Brave-explicit-10",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/lws+json",
+        "contentType": null
+      },
+      "preflight": null
+    },
+    {
+      "mode": "explicit",
+      "name": "GET  Accept application/ld+json",
+      "id": "Brave-explicit-11",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/ld+json",
+        "contentType": null
+      },
+      "preflight": null
+    },
+    {
+      "mode": "explicit",
+      "name": "GET  no custom headers (read profiled response CT)",
+      "id": "Brave-explicit-12",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": null
+      },
+      "preflight": null
+    },
+    {
+      "mode": "explicit",
+      "name": "POST Content-Type ld+json;profile=\"url\"",
+      "id": "Brave-explicit-13",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\""
+      },
+      "preflight": {
+        "method": "POST",
+        "headers": "content-type"
+      }
+    },
+    {
+      "mode": "explicit",
+      "name": "POST Content-Type application/lws+json",
+      "id": "Brave-explicit-14",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": "application/lws+json"
+      },
+      "preflight": {
+        "method": "POST",
+        "headers": "content-type"
+      }
+    },
+    {
+      "mode": "explicit",
+      "name": "POST Content-Type text/plain (control)",
+      "id": "Brave-explicit-15",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": "text/plain"
+      },
+      "preflight": null
+    },
+    {
+      "mode": "wildcard",
+      "name": "GET  Accept ld+json;profile=\"url\" (quoted)",
+      "id": "Brave-wildcard-16",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+        "contentType": null
+      },
+      "preflight": {
+        "method": "GET",
+        "headers": "accept"
+      }
+    },
+    {
+      "mode": "wildcard",
+      "name": "GET  Accept ld+json;profile=url (unquoted)",
+      "id": "Brave-wildcard-17",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/ld+json;profile=https://www.w3.org/ns/lws",
+        "contentType": null
+      },
+      "preflight": {
+        "method": "GET",
+        "headers": "accept"
+      }
+    },
+    {
+      "mode": "wildcard",
+      "name": "GET  Accept application/lws+json",
+      "id": "Brave-wildcard-18",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/lws+json",
+        "contentType": null
+      },
+      "preflight": null
+    },
+    {
+      "mode": "wildcard",
+      "name": "GET  Accept application/ld+json",
+      "id": "Brave-wildcard-19",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "application/ld+json",
+        "contentType": null
+      },
+      "preflight": null
+    },
+    {
+      "mode": "wildcard",
+      "name": "GET  no custom headers (read profiled response CT)",
+      "id": "Brave-wildcard-20",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": null
+      },
+      "preflight": null
+    },
+    {
+      "mode": "wildcard",
+      "name": "POST Content-Type ld+json;profile=\"url\"",
+      "id": "Brave-wildcard-21",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\""
+      },
+      "preflight": {
+        "method": "POST",
+        "headers": "content-type"
+      }
+    },
+    {
+      "mode": "wildcard",
+      "name": "POST Content-Type application/lws+json",
+      "id": "Brave-wildcard-22",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": "application/lws+json"
+      },
+      "preflight": {
+        "method": "POST",
+        "headers": "content-type"
+      }
+    },
+    {
+      "mode": "wildcard",
+      "name": "POST Content-Type text/plain (control)",
+      "id": "Brave-wildcard-23",
+      "ok": true,
+      "status": 200,
+      "responseContentType": "application/ld+json; profile=\"https://www.w3.org/ns/lws\"",
+      "body": {
+        "@id": "urn:x",
+        "accept": "*/*",
+        "contentType": "text/plain"
+      },
+      "preflight": null
+    }
+  ]
+}

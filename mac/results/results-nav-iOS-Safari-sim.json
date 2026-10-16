@@ -1,0 +1,27 @@
+{
+  "label": "iOS-Safari-sim",
+  "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1",
+  "results": [
+    {
+      "path": "/nav/profile",
+      "outcome": "displayed",
+      "documentContentType": "application/ld+json",
+      "bodyText": "{\"@context\":\"https://www.w3.org/ns/lws/v1\",\"@id\":\"/nav/profile\",\"type\":\"Container\",\"servedAs\":\"application/ld+json; prof",
+      "finalHref": "http://127.0.0.1:8004/nav/profile"
+    },
+    {
+      "path": "/nav/lws",
+      "outcome": "displayed",
+      "documentContentType": "application/lws+json",
+      "bodyText": "{\"@context\":\"https://www.w3.org/ns/lws/v1\",\"@id\":\"/nav/lws\",\"type\":\"Container\",\"servedAs\":\"application/lws+json\"}",
+      "finalHref": "http://127.0.0.1:8004/nav/lws"
+    },
+    {
+      "path": "/nav/ldjson",
+      "outcome": "displayed",
+      "documentContentType": "application/ld+json",
+      "bodyText": "{\"@context\":\"https://www.w3.org/ns/lws/v1\",\"@id\":\"/nav/ldjson\",\"type\":\"Container\",\"servedAs\":\"application/ld+json\"}",
+      "finalHref": "http://127.0.0.1:8004/nav/ldjson"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "browser": "Firefox",
+  "version": "158.0",
+  "base": "http://127.0.0.1:8003",
+  "results": [
+    {
+      "path": "/profile",
+      "url": "http://127.0.0.1:8003/profile",
+      "currentUrl": "http://127.0.0.1:8003/profile",
+      "documentContentType": "application/ld+json",
+      "jsonViewer": true,
+      "bodyText": "JSON\nRaw Data\nHeaders\nSave\nCopy\nCollapse All\nExpand All\n\t\n@context\t\"https://www.w3.org/ns/lws/v1\"\n@id\t\"http://127.0.0.1:",
+      "newDownloads": [],
+      "outcome": "displayed (JSON viewer)"
+    },
+    {
+      "path": "/lws",
+      "url": "http://127.0.0.1:8003/lws",
+      "currentUrl": "http://127.0.0.1:8003/lws",
+      "documentContentType": "application/lws+json",
+      "jsonViewer": true,
+      "bodyText": "JSON\nRaw Data\nHeaders\nSave\nCopy\nCollapse All\nExpand All\n\t\n@context\t\"https://www.w3.org/ns/lws/v1\"\n@id\t\"http://127.0.0.1:",
+      "newDownloads": [],
+      "outcome": "displayed (JSON viewer)"
+    },
+    {
+      "path": "/ldjson",
+      "url": "http://127.0.0.1:8003/ldjson",
+      "currentUrl": "http://127.0.0.1:8003/ldjson",
+      "documentContentType": "application/ld+json",
+      "jsonViewer": true,
+      "bodyText": "JSON\nRaw Data\nHeaders\nSave\nCopy\nCollapse All\nExpand All\n\t\n@context\t\"https://www.w3.org/ns/lws/v1\"\n@id\t\"http://127.0.0.1:",
+      "newDownloads": [],
+      "outcome": "displayed (JSON viewer)"
+    }
+  ]
+}
