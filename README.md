@@ -61,12 +61,12 @@ All browsers gave identical results.
 
 | Browser | Version | Engine | Where |
 | --- | --- | --- | --- |
-| Google Chrome | 154.0.8037.98 | Chromium 154 | macOS |
+| Google Chrome | 155.0.8059.80 | Chromium 155 | macOS |
 | Microsoft Edge | 155.0.4283.45 | Chromium 155 | macOS |
 | Opera | 137.0.6036.63 | Chromium 153 | macOS |
 | Brave | 1.97.57 | Chromium 155 | macOS |
 | Vivaldi | 8.2.4133.87 | Chromium 152 | macOS |
-| Firefox | 149 (user agent) | Gecko | macOS |
+| Firefox | 158.0 | Gecko | macOS |
 | Safari | 27.0.1 | WebKit | macOS |
 | Chromium (headless) | 141.0.7390.37 | Chromium 141 | Linux, incl. HTTPS run |
 
