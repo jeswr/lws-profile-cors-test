@@ -111,6 +111,8 @@ The full per-case output is in [`mac/`](mac/) and [`cloud/`](cloud/).
 
 [`cloud/https-chromium.js`](cloud/https-chromium.js) repeats the checks between two distinct HTTPS origins, with a page on `https://app.test` calling `https://pod.test`. It uses a locally generated certificate, the page is a secure context, and it was not run over the public internet. The results matched the localhost runs. In the same run, navigating directly to a public container served as `application/ld+json; profile="…"`, `application/lws+json` or `application/ld+json` showed the JSON in the tab in every case, with no download.
 
+Over the public internet: [`mac/public-test.js`](mac/public-test.js) ran behind two Cloudflare quick tunnels, giving two distinct public `https://*.trycloudflare.com` origins with real certificates. The API allowed only the page's origin. In Chrome, Edge, Opera, Brave, Firefox and iOS Safari (Simulator), the fetch matrix and the address-bar check gave exactly the same results as on localhost. Details are in [`mac/RUN.md`](mac/RUN.md).
+
 ### Opening a container in the address bar
 
 The real installed browsers were driven automatically, and each page was read from code. Every browser displayed the container served as `application/ld+json; profile="…"`, `application/lws+json` and plain `application/ld+json`, and none downloaded it:
@@ -123,10 +125,9 @@ Each reports `document.contentType` as the served type without parameters. Detai
 
 ### Not covered yet
 
-- Address-bar check in Vivaldi, which won't attach to automation.
-- Address-bar check in macOS Safari: safaridriver is enabled, but session creation timed out. A one-click self-report page ([`mac/nav-self.js`](mac/nav-self.js)) is open in both browsers as a fallback.
+- Address-bar check in Vivaldi, which won't attach to automation (its fetch results are valid).
+- Address-bar check and the public-HTTPS run in macOS Safari: safaridriver is enabled, but session creation timed out. Its localhost fetch results are valid.
 - Arc, which needs an account sign-in.
-- A run over the public internet between two real HTTPS origins. The tunnel tool (`cloudflared`) has not been installed yet.
 - Android browsers.
 - The macOS runs used the profile URL `https://www.w3.org/ns/lws`. The Linux runs used `https://www.w3.org/ns/lws/v1`. Both contain `:` and `/`, so the rule applies identically.
 

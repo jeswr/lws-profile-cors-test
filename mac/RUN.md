@@ -69,9 +69,39 @@ No browser downloaded any of the three. Each reported `document.contentType` as 
 
 iOS Safari in the Simulator also ran the full fetch matrix (`results/results-iOS-Safari-sim.json`). The results are identical to the seven desktop browsers.
 
-Not yet covered:
+**Caveat on the self-report page:** it doesn't work in Firefox. Firefox's JSON viewer is a privileged page, so reading it from the opener throws `SecurityError: Permission denied … cross-origin object` and the page wrongly reports "not rendered". A click on the page labelled `?b=Vivaldi` produced exactly this, but its user-agent is Firefox 158, and the server saw no requests from Vivaldi. It is therefore discarded, not recorded as a Vivaldi result. For Firefox, use the geckodriver results.
 
-- **Vivaldi:** it would not attach to Playwright or expose a remote-debugging port.
-- **macOS Safari:** safaridriver needs `safaridriver --enable` (an admin password).
+## Public HTTPS run (2026-10-16, ~15:20–15:40 BST)
 
-Both have the self-report page open (`http://127.0.0.1:8004/?b=...`) and need one click on its button. Arc needs an account sign-in. A public-HTTPS run over tunnels was not done, because installing `cloudflared` was blocked pending the owner's approval.
+`public-test.js` serves the test page on :8011 and the API on :8012. Each port sat behind its own Cloudflare quick tunnel, so the page and the API were two distinct public origins with real certificates, reached over the internet:
+
+- Page: `https://satisfactory-headline-connector-deck.trycloudflare.com`
+- API: `https://clubs-space-small-pharmacy.trycloudflare.com`
+
+Both tunnels were shut down after the run, so these URLs no longer work. The API returns `Access-Control-Allow-Origin: <page origin>` (not `*`) with `Vary: Origin`. Responses carry `Content-Type: application/ld+json; profile="https://www.w3.org/ns/lws/v1"`, and a `curl` through the tunnel confirmed Cloudflare passes it through unchanged.
+
+```bash
+cloudflared tunnel --url http://127.0.0.1:8011    # and another for :8012
+PAGE_ORIGIN=https://<page>.trycloudflare.com API_ORIGIN=https://<api>.trycloudflare.com node public-test.js
+node automation/public-chromium.js Chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" https://<page>.trycloudflare.com
+```
+
+The page runs the same 24-case fetch matrix automatically. Its "Run address-bar test" button then runs the popup check against `/nav/{profile,lws,ldjson}` on the page origin.
+
+| Browser | Fetch matrix (24 cases) | Address bar (`profile` / `lws+json` / `ld+json`) | How |
+|---|---|---|---|
+| Chrome 155.0.8059.80 | same as localhost; `isSecureContext` true | displayed / displayed / displayed | Playwright |
+| Edge 155.0.4283.45 | same | displayed ×3 | Playwright |
+| Opera 137 (Chromium 153) | same | displayed ×3 | Playwright |
+| Brave 1.97.57 (Chromium 155) | same | displayed ×3 | Playwright |
+| Firefox 158.0 | same | JSON viewer ×3 | geckodriver; fetch via the page, address bar via `driver.get` |
+| iOS Safari (Simulator, iOS 26.5) | same | displayed ×3 | simctl openurl + tap |
+
+"Same" means every case passed or failed exactly as on localhost, with the same preflight behaviour, and script read the full profiled `Content-Type`. Raw files are in `results/public-https/`.
+
+## Still not covered
+
+- **macOS Safari automation:** safaridriver is enabled, but every session request timed out with "The session timed out while connecting to a Safari instance". Safari probably needs a restart. Its 2026-10-16 fetch results above come from a manual `open -a`.
+- **Vivaldi address bar:** no valid result yet; see the caveat above. Vivaldi's fetch-matrix result is valid.
+- **Arc:** needs an account sign-in.
+- **Android browsers:** no device or emulator available.

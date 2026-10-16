@@ -1,0 +1,37 @@
+{
+  "browser": "Firefox",
+  "version": "158.0",
+  "base": "https://satisfactory-headline-connector-deck.trycloudflare.com/nav",
+  "results": [
+    {
+      "path": "/profile",
+      "url": "https://satisfactory-headline-connector-deck.trycloudflare.com/nav/profile",
+      "currentUrl": "https://satisfactory-headline-connector-deck.trycloudflare.com/nav/profile",
+      "documentContentType": "application/ld+json",
+      "jsonViewer": true,
+      "bodyText": "JSON\nRaw Data\nHeaders\nSave\nCopy\nCollapse All\nExpand All\n\t\n@context\t\"https://www.w3.org/ns/lws/v1\"\n@id\t\"https://satisfact",
+      "newDownloads": [],
+      "outcome": "displayed (JSON viewer)"
+    },
+    {
+      "path": "/lws",
+      "url": "https://satisfactory-headline-connector-deck.trycloudflare.com/nav/lws",
+      "currentUrl": "https://satisfactory-headline-connector-deck.trycloudflare.com/nav/lws",
+      "documentContentType": "application/lws+json",
+      "jsonViewer": true,
+      "bodyText": "JSON\nRaw Data\nHeaders\nSave\nCopy\nCollapse All\nExpand All\n\t\n@context\t\"https://www.w3.org/ns/lws/v1\"\n@id\t\"https://satisfact",
+      "newDownloads": [],
+      "outcome": "displayed (JSON viewer)"
+    },
+    {
+      "path": "/ldjson",
+      "url": "https://satisfactory-headline-connector-deck.trycloudflare.com/nav/ldjson",
+      "currentUrl": "https://satisfactory-headline-connector-deck.trycloudflare.com/nav/ldjson",
+      "documentContentType": "application/ld+json",
+      "jsonViewer": true,
+      "bodyText": "JSON\nRaw Data\nHeaders\nSave\nCopy\nCollapse All\nExpand All\n\t\n@context\t\"https://www.w3.org/ns/lws/v1\"\n@id\t\"https://satisfact",
+      "newDownloads": [],
+      "outcome": "displayed (JSON viewer)"
+    }
+  ]
+}
