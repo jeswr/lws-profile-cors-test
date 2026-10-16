@@ -1,0 +1,9 @@
+NAV application/ld+json; profile="https://www.w3.org/ns/lws/v1": status=200 download=false shown="{\"@context\":\"https://www.w3.org/ns/lws/v1\",\"id\":\"https://pod"
+NAV application/lws+json: status=200 download=false shown="{\"@context\":\"https://www.w3.org/ns/lws/v1\",\"id\":\"https://pod"
+NAV application/ld+json: status=200 download=false shown="{\"@context\":\"https://www.w3.org/ns/lws/v1\",\"id\":\"https://pod"
+SCRIPT GET, no custom headers: preflight=false -> OK ct=application/ld+json; profile="https://www.w3.org/ns/lws/v1" body={"@context":"https://www.w3.or
+SCRIPT GET Accept lws+json: preflight=false -> OK ct=application/ld+json; profile="https://www.w3.org/ns/lws/v1" body={"@context":"https://www.w3.or
+SCRIPT GET Accept ld+json;profile: preflight=true -> OK ct=application/ld+json; profile="https://www.w3.org/ns/lws/v1" body={"@context":"https://www.w3.or
+SCRIPT GET Accept ld+json;profile, server ignores preflight: preflight=true -> REJECTED Failed to fetch
+SCRIPT PUT CT ld+json;profile: preflight=true -> OK ct=application/ld+json; profile="https://www.w3.org/ns/lws/v1" body={"@context":"https://www.w3.or
+secure context: true

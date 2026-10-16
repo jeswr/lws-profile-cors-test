@@ -1,0 +1,21 @@
+Open http://127.0.0.1:8001/?b=<BrowserName> in each browser
+
+== Chromium-cloud | Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36
+[none] GET Accept: application/lws+json: preflight=false -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[none] GET Accept: application/ld+json: preflight=false -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[none] GET Accept: application/ld+json; profile="URL": preflight=true -> REJECTED (Failed to fetch)
+[none] GET Accept: application/ld+json;profile=URL (unquoted): preflight=true -> REJECTED (Failed to fetch)
+[none] PUT Content-Type: application/lws+json: preflight=true -> REJECTED (Failed to fetch)
+[none] PUT Content-Type: application/ld+json; profile="URL": preflight=true -> REJECTED (Failed to fetch)
+[explicit] GET Accept: application/lws+json: preflight=false -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[explicit] GET Accept: application/ld+json: preflight=false -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[explicit] GET Accept: application/ld+json; profile="URL": preflight=true -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[explicit] GET Accept: application/ld+json;profile=URL (unquoted): preflight=true -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[explicit] PUT Content-Type: application/lws+json: preflight=true -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[explicit] PUT Content-Type: application/ld+json; profile="URL": preflight=true -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[wildcard] GET Accept: application/lws+json: preflight=false -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[wildcard] GET Accept: application/ld+json: preflight=false -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[wildcard] GET Accept: application/ld+json; profile="URL": preflight=true -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[wildcard] GET Accept: application/ld+json;profile=URL (unquoted): preflight=true -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[wildcard] PUT Content-Type: application/lws+json: preflight=true -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
+[wildcard] PUT Content-Type: application/ld+json; profile="URL": preflight=true -> OK, response Content-Type readable: application/ld+json; profile="https://www.w3.org/ns/lws/v1"
