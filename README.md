@@ -19,9 +19,11 @@ This repository tests whether that is true for current browsers.
 | Request `Content-Type` on PUT/POST | Preflight needed | Preflight needed |
 | Server ignores `OPTIONS` | `Accept` GETs and all writes fail | Writes fail |
 | Server allows `accept, content-type` (or `*`) | Everything works | Everything works |
-| Opening the URL in the address bar (Chromium) | JSON shown in the tab | JSON shown in the tab |
+| Opening the URL in the address bar | JSON shown in the tab, no download | JSON shown in the tab, no download |
 
 So `application/lws+json` saves exactly one preflight, on GET requests that ask for the profile in `Accept`. In practice that saving rarely applies, because any authenticated request (`Authorization`, `DPoP`) and any JSON write is preflighted whatever the media type.
+
+Needing a preflight is not free, though. See [Costs of relying on the preflight](#costs-of-relying-on-the-preflight).
 
 Leaving out the quotes (`profile=https://…`) does not avoid the preflight, because the URL still contains `:`.
 
@@ -55,6 +57,16 @@ The actual response also needs `Access-Control-Allow-Origin`, and `Access-Contro
 
 `Access-Control-Allow-Headers: *` worked in the tests, but it does not cover `Authorization`, and on credentialed requests (cookies) it is treated as a literal header name. Listing the headers, or echoing `Access-Control-Request-Headers`, is safer. Servers that already support authenticated or write requests from browser apps (for example Solid servers) already do this.
 
+## Costs of relying on the preflight
+
+A preflight is not a failure, but it is not neutral either. Dropping `application/lws+json` moves these costs onto servers and clients that ask for the profile in `Accept`:
+
+- **Latency:** the first profiled GET to each URL costs an extra round trip. The preflight cache is keyed by URL (and request headers). A client walking a container tree therefore pays one preflight per resource. Browsers also cap `Access-Control-Max-Age`, so the preflights come back after the cap expires.
+- **Server requirements:** the server must answer `OPTIONS` with the right CORS headers. That is routine for a dynamic server, but hard or impossible on some static hosts, CDNs and object stores. With `application/lws+json`, an unauthenticated read-only deployment needs only `Access-Control-Allow-Origin` on its responses.
+- **Opaque failures:** if the preflight is missing or wrong, script sees only a generic network error, with no status code. That is harder to debug than an ordinary HTTP error.
+
+The saving only applies to requests that would otherwise be "simple". Authenticated requests (`Authorization`, `DPoP`) and JSON writes are preflighted whatever the media type, so for those `application/lws+json` makes no difference.
+
 ## Results
 
 All browsers gave identical results.
@@ -68,9 +80,10 @@ All browsers gave identical results.
 | Vivaldi | 8.2.4133.87 | Chromium 152 | macOS |
 | Firefox | 158.0 | Gecko | macOS |
 | Safari | 27.0.1 | WebKit | macOS |
+| iOS Safari | iOS 26.5 (iPhone 17e) | WebKit | iOS Simulator on macOS |
 | Chromium (headless) | 141.0.7390.37 | Chromium 141 | Linux, incl. HTTPS run |
 
-Each browser ran the same 18 cases: six requests, each against a server with three preflight setups.
+Each browser ran every request below against each of three server preflight setups. That is 18 cases on Linux and 24 on macOS. The macOS set adds a GET with no custom headers and a `text/plain` POST as controls, and uses POST for writes.
 
 - **Requests:**
   - `GET` with `Accept: application/lws+json`
@@ -98,15 +111,29 @@ The full per-case output is in [`mac/`](mac/) and [`cloud/`](cloud/).
 
 [`cloud/https-chromium.js`](cloud/https-chromium.js) repeats the checks between two distinct HTTPS origins, with a page on `https://app.test` calling `https://pod.test`. It uses a locally generated certificate, the page is a secure context, and it was not run over the public internet. The results matched the localhost runs. In the same run, navigating directly to a public container served as `application/ld+json; profile="…"`, `application/lws+json` or `application/ld+json` showed the JSON in the tab in every case, with no download.
 
-### Not covered
+### Opening a container in the address bar
 
-- Opening a container from the address bar was checked visually only in Chromium. The macOS browsers all fetched the URLs, but whether each one displayed or downloaded the JSON was not recorded. In any case, `application/lws+json` and `application/ld+json` are both `+json` types, so a profile parameter shouldn't change this.
-- Arc (needs sign-in) and mobile browsers were not tested.
+The real installed browsers were driven automatically, and each page was read from code. Every browser displayed the container served as `application/ld+json; profile="…"`, `application/lws+json` and plain `application/ld+json`, and none downloaded it:
+
+- Chrome, Edge, Opera and Brave, driven with Playwright, show the JSON as raw text.
+- Firefox, driven with geckodriver, opens all three in its JSON viewer.
+- iOS Safari in the Simulator displays all three.
+
+Each reports `document.contentType` as the served type without parameters. Details are in [`mac/RUN.md`](mac/RUN.md).
+
+### Not covered yet
+
+- Address-bar check in Vivaldi (won't attach to automation) and macOS Safari (being automated with safaridriver).
+- Arc, which needs an account sign-in.
+- A run over the public internet between two real HTTPS origins, using tunnels. This is in progress.
+- Android browsers.
 - The macOS runs used the profile URL `https://www.w3.org/ns/lws`. The Linux runs used `https://www.w3.org/ns/lws/v1`. Both contain `:` and `/`, so the rule applies identically.
 
 ## Prior discussion
 
-- [w3c/json-ld-syntax#436](https://github.com/w3c/json-ld-syntax/issues/436), "URI in Profile triggers CORS Unsafe Request Header Byte rule", raised for IIIF and Linked Art. This covers the same behaviour. At its 10 June 2026 meeting the JSON-LD WG noted that the preflight solves it, and planned to cover it in best practices rather than change JSON-LD.
+- [w3c/lws-protocol#276](https://github.com/w3c/lws-protocol/issues/276), "Re-evaluate application/lws+json Media Type", gathers WG feedback on whether to keep `application/lws+json` or rely on the profiled `application/ld+json` form.
+
+- [w3c/json-ld-syntax#436](https://github.com/w3c/json-ld-syntax/issues/436), "URI in Profile triggers CORS Unsafe Request Header Byte rule", raised for IIIF and Linked Art. This is the original discussion, and it covers the same behaviour. It already recognised that the problem is more subtle than a browser blocking the request. Over time that conclusion got simplified to "WHATWG does not support URL profiles", which these results show is not accurate. At its 10 June 2026 meeting the JSON-LD WG noted that the preflight solves it, and planned to cover it in best practices rather than change JSON-LD.
 - [WebKit bug 165178](https://bugs.webkit.org/show_bug.cgi?id=165178) (2016) introduced the `Accept` restriction in Safari: "we're not blocking such request headers, merely making them trigger a preflight". Fetch later standardised the current byte list.
 - [whatwg/fetch#878](https://github.com/whatwg/fetch/issues/878) proposed letting servers opt out of CORS. It does not propose blocking these requests.
 
