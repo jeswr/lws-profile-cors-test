@@ -1,4 +1,4 @@
 {
   "private": true,
-  "dependencies": { "playwright": "1.49.1", "selenium-webdriver": "4.27.0" }
+  "dependencies": { "playwright": "1.55.1", "selenium-webdriver": "4.27.0" }
 }
